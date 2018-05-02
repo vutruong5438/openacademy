@@ -3,7 +3,7 @@
 
 require_once(dirname(__FILE__) . '/Model.php');
 
-class Quizz extends Model {
+class Progr_St extends Model {
 
     public $conn;
 
@@ -11,7 +11,7 @@ class Quizz extends Model {
         parent::__construct();
     }
 
-    public function get_quizz_data() {
+    public function get_by_st_tc() {
         $sqlu = "SELECT quizz.id, quizz.course_id, quizz.question, quizz.answer, course.course_name, program.program_name FROM quizz LEFT JOIN course ON quizz.course_id = course.id LEFT JOIN program ON course.id = program.id ORDER BY program.id";
 
         $result = $this->conn->query($sqlu);

@@ -5,6 +5,8 @@ require_once(dirname(__FILE__) . '/../model/Course.php');
 require_once(dirname(__FILE__) . '/../model/Program.php');
 require_once(dirname(__FILE__) . '/../model/Quizz.php');
 require_once(dirname(__FILE__) . '/../model/Exam.php');
+require_once(dirname(__FILE__) . '/../model/Prog_st.php');
+require_once(dirname(__FILE__) . '/../model/Cour_st.php');
 
 class StudentController extends Controller {
 
@@ -19,6 +21,8 @@ class StudentController extends Controller {
         $this->prog = new Program();
         $this->quizz = new Quizz();
         $this->exam = new Exam();
+        $this->prog_st = new Progr_St();
+        $this->cour_st = new Course_St();
     }
 
     public function getRoute() {
@@ -32,7 +36,8 @@ class StudentController extends Controller {
             $this->course_render();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'compiler' && isset($_GET['id'])) {
             $this->compiler();
-
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'submit' && isset($_GET['id'])) {
+            $this->submit();
         } else {
             $this->index();
         }
@@ -53,7 +58,13 @@ class StudentController extends Controller {
     public function view_course_by_program() {
         $id = $_GET['id'];
         // $prog_name = $_GET['program_name'];
-        $list = $this->course->view_course_by_program($id);
+        $list = $this->course->view_course_by_program($id, $_SESSION['arUser']['id']);
+        foreach ($list as $course) {
+            $check = $this->cour_st->check_exist($course['id'], $_SESSION['arUser']['id']);
+            if ($check == 0) {
+                $s = $this->cour_st->cur_st_store($course['id'], $_SESSION['arUser']['id']);
+            }
+        }
 
         require_once(dirname(__FILE__) . '/../view/student/view_course.php');
         return;
@@ -66,6 +77,48 @@ class StudentController extends Controller {
         $exam = $this->exam->get_exam_by_course($id);
         require_once(dirname(__FILE__) . '/../view/student/course_render.php');
         return;
+    }
+
+    public function submit() {
+        $id_course = $_GET['id'];
+        $questions = $this->quizz->getQuizz_by_course($id_course);
+        $exam = $this->exam->get_exam_by_course($id_course);
+        $len_quiz = count($questions);
+        $temp = 0;
+        foreach ($questions as $question) {
+            $id = "quizz{$question['id']}";
+            $quiz = $_POST[$id];
+            if ($quiz == $question['answer']){
+                $temp += 1;
+            }
+        }
+        $code = 0;
+        $id_exam = $_GET['exam'];
+        $code = $_POST['code'];
+        $in_out = $this->exam->get_in_ouy_by_exam($id_exam);
+        $len_io = count($in_out);
+        $check = 0;
+
+        foreach ($in_out as $value) {
+            $output = $this->check_code($value["input"], $code);
+            
+           
+
+            if ($output == $value["output"]){
+                $check += 1;
+            }
+           
+        }
+        if ($check == $len_io) {
+            $code += 30 ;
+            //input code
+        }
+        $result = $code + floor(70*($temp/$len_quiz));
+
+        $res = $this->cour_st->update_cur_st($id_course, $_SESSION['arUser']['id'], $result);
+        require_once(dirname(__FILE__) . '/../view/student/view_course.php');
+        return;
+
     }
 
     public function compiler() {

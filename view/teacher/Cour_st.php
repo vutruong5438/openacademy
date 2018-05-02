@@ -3,7 +3,7 @@
 
 require_once(dirname(__FILE__) . '/Model.php');
 
-class Quizz extends Model {
+class Progr_St extends Model {
 
     public $conn;
 
@@ -11,34 +11,25 @@ class Quizz extends Model {
         parent::__construct();
     }
 
-    public function get_quizz_data() {
-        $sqlu = "SELECT quizz.id, quizz.course_id, quizz.question, quizz.answer, course.course_name, program.program_name FROM quizz LEFT JOIN course ON quizz.course_id = course.id LEFT JOIN program ON course.id = program.id ORDER BY program.id";
+    public function update_cur_st($cur,$st,$res) {
+        $sqlu = "UPDATE course_student SET task = '{$res}' WHERE student_id = '{$st}' AND  course_id = '{$cur}'";
 
-        $result = $this->conn->query($sqlu);
-        $listCourse = array();
-        while ($listCourse = mysqli_fetch_assoc($result)) {
-            $listCourses[] = $listCourse;
-        }
+        $result = $this->conn->query($sql);
 
-        return $listCourses;
+        return $result;
     } 
 
-    public function get_course_data() {
-        $sqlu = "SELECT course.id, course.course_name, program.program_name FROM course LEFT JOIN program ON course.program_id = program.id";
+    public function check_exist($cur,$st) {
+        $sqlu = "SELECT * FROM course_student WHERE student_id = '{$st}' AND  course_id = '{$cur}'";
 
-        $result = $this->conn->query($sqlu);
-        $listCourse = array();
+        $result = $this->conn->query($sql);
 
-        while ($listCourse = mysqli_fetch_assoc($result)) {
-            $listCourses[] = $listCourse;
-        }
-
-        return $listCourses;
+        return $result;
     }  
 
 
-    public function quizz_store($request) {
-        $sql = "INSERT INTO quizz(course_id, question, answer) VALUES ('{$request["course_id"]}', '{$request["question"]}', '{$request["answer"]}')";
+    public function cur_st_store($cur,$st) {
+        $sql = "INSERT INTO course_student(course_id, student_id) VALUES ('{$cur}', '{$st}')";
 
         $result = $this->conn->query($sql);
 

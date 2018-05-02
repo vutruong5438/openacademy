@@ -37,7 +37,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" colspan="3">Jave</th>
+                    <th scope="col" colspan="4"><?php echo $list[0]['program_name']; ?></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,8 @@
                   <tr>
                       <th scope="row"><?php echo $stt; ?></th>
                       <td colspan="2"><?php echo $course['course_name']; ?></td>
-                      <td class="float-right"><a  href="student.php?action=course_render&id=<?php echo $course['id']; ?>" type="button" class="text-primary">Go&nbsp;</a>
+                      <td><?php echo $course['task']; ?>%</td>
+                      <td class="text-right"><a  href="student.php?action=course_render&id=<?php echo $course['id']; ?>" type="button" class="text-primary">Go&nbsp;</a>
                       </td>
                   </tr>
                   <?php endforeach ?>

@@ -26,11 +26,10 @@ class Course extends Model {
 
 
     public function get_program_data() {
-        $sqlu = "SELECT * FROM program";
+        $sqlu = "SELECT program.user_id, program.id, program.date_create, program.detail, program.program_name, users.username, users.fullname FROM program LEFT JOIN users ON program.user_id = users.id";
 
         $result = $this->conn->query($sqlu);
         $listProgram = array();
-
         while ($listProgram = mysqli_fetch_assoc($result)) {
             $listPrograms[] = $listProgram;
         }
@@ -55,8 +54,8 @@ class Course extends Model {
         return $info;
     }
 
-     public function view_course_by_program($id) {
-        $sql = "SELECT course.id, course.course_name, course.body, program.program_name, course.program_id FROM course LEFT JOIN program ON course.program_id = program.id WHERE program.id = '{$id}'";
+     public function view_course_by_program($id, $user) {
+        $sql = "SELECT course.id, course.course_name, course.body, program.program_name, course.program_id, course_student.task FROM course LEFT JOIN program ON course.program_id = program.id LEFT JOIN course_student ON course_student.course_id = course.id AND course_student.student_id = '{$user}' WHERE program.id = '{$id}'";
 
         $result = $this->conn->query($sql);
         $listProgram = array();

@@ -49,10 +49,9 @@
 	                                            Create Date: <?php echo date("d-m-Y", strtotime($program['date_create'])) ; ?>
 	                                        </p>
 	                                        <p class="card-text">
-	                                            Create by Administrator
-	                                        </p>
-	                                        <p class="card-text">
-	                                            5 People
+	                                            Create by Administrator <br/>
+                                                <?php echo $program['fullname']; ?><br/>
+                                                5 People
 	                                        </p>
 	                                    </div>
                                 	</div>

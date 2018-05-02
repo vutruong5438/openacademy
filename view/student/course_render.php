@@ -21,18 +21,19 @@
 						<div class="card-body">
 								<?php echo $data_render['body']; ?>
 								<?php foreach ($question as $key => $quizz): ?>
+									<form class="col col-md-12" id="form" name="f2" method="POST" action="student.php?action=submit&id=<?php echo $data_render['id']; ?>&exam=<?php echo $exam['id']; ?>">
 				                  	<div class="row form-group">
 									<div class="col col-md-9"><label class=" form-control-label"><?php echo $quizz['question']; ?></label></div>
 									<div class="col col-md-3">
 										<div class="form-check">
 											<div class="radio">
 												<label for="radio<?php echo $quizz['id']; ?>" class="form-check-label ">
-													<input type="radio" id="radio<?php echo $quizz['id']; ?>" name="radio<?php echo $quizz['id']; ?>" value="true" class="form-check-input">True
+													<input type="radio" name="quizz<?php echo $quizz['id']; ?>" value="1" class="form-check-input">True
 												</label>
 											</div>
 											<div class="radio">
 												<label for="radio<?php echo $quizz['id']; ?>" class="form-check-label ">
-													<input type="radio" id="radio<?php echo $quizz['id']; ?>" name="radio<?php echo $quizz['id']; ?>" value="fale" class="form-check-input">False
+													<input type="radio" name="quizz<?php echo $quizz['id']; ?>" value="0" class="form-check-input">False
 												</label>
 											</div>
 										</div>
@@ -59,7 +60,7 @@
 								
 								<div class="row form-group">
 									<div class="col col-md-12"><span>Exam:  <?php echo $exam['question']; ?></span></div>
-									<form class="col col-md-12" id="form" name="f2" method="POST">
+									
 										<div class="col col-md-12">
 											<button type="button" id="st" name="st" class="btn btn-primary btn-sm">Run Code</button>
 
@@ -73,22 +74,26 @@
 
 										<div class="col col-md-8">
 											<label for="ta">Write Your Code</label>
-											<textarea name="code" cols="9" rows="9" placeholder="Code..." class="form-control">    #include <iostream>
-    using namespace std;
-     
-    int main()
-    {
-    	cout << "Hello World" << endl;
-     
-    	cin.get();
-    	return 0;
-    }</textarea>
+											<textarea name="code" cols="9" rows="9" placeholder="Code..." class="form-control">
+
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{
+   int a, b, c;
+   cin >> a >> b;
+   c = a + b;
+   cout << c << endl;
+   return 0;
+}</textarea>
 										</div>
 										<div class="col col-md-4">
 											<label for="in">Enter Your Input</label>
 											<textarea name="input" cols="9" rows="9" placeholder="Input" class="form-control"></textarea>
 										</div>
-									</form>
+									
 								
 
 										<script type="text/javascript">
@@ -151,7 +156,8 @@
 										</div>
 									
 								</div>
-
+							<button type="submit" id="submit" name="submit" class="btn btn-primary btn-sm">Submit</button>
+							</form>
 							</div>
 						</div>
 					</div>
