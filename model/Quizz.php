@@ -54,6 +54,17 @@ class Quizz extends Model {
         return $info;
     }
 
+    public function getQuizz_by_course($id) {
+        $sqlu = "SELECT quizz.id, quizz.course_id, quizz.question, quizz.answer, course.course_name, program.program_name FROM quizz LEFT JOIN course ON quizz.course_id = course.id LEFT JOIN program ON course.id = program.id WHERE quizz.course_id = '{$id}' ORDER BY program.id";
+
+        $result = $this->conn->query($sqlu);
+        $listCourse = array();
+        while ($listCourse = mysqli_fetch_assoc($result)) {
+            $listCourses[] = $listCourse;
+        }
+
+        return $listCourses;
+    }
 
     public function quizz_update($request, $id) {
     

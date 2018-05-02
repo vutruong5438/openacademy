@@ -1,13 +1,3 @@
-
-
-<?php
-
-	
-		
-		include("view/compilers/cpp.php");
-	
-				
-
+<?php	
+	include("view/compilers/cpp.php");
 ?>
-
-

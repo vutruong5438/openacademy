@@ -23,6 +23,19 @@ class Exam extends Model {
         return $listCourses;
     } 
 
+    public function get_in_ouy_by_exam($id) {
+        $sqlu = "SELECT in_out_exam.id, in_out_exam.exam_id, in_out_exam.input, in_out_exam.output FROM in_out_exam WHERE exam_id = '{$id}' ";
+
+        $result = $this->conn->query($sqlu);
+        $listCourse = array();
+
+        while ($listCourse = mysqli_fetch_assoc($result)) {
+            $listCourses[] = $listCourse;
+        }
+
+        return $listCourses;
+    }  
+
     public function get_course_data() {
         $sqlu = "SELECT course.id, course.course_name, program.program_name FROM course LEFT JOIN program ON course.program_id = program.id";
 

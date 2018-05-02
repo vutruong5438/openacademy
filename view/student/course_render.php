@@ -20,8 +20,26 @@
 						</div>
 						<div class="card-body">
 								<?php echo $data_render['body']; ?>
-								
-								<div class="row form-group">
+								<?php foreach ($question as $key => $quizz): ?>
+				                  	<div class="row form-group">
+									<div class="col col-md-9"><label class=" form-control-label"><?php echo $quizz['question']; ?></label></div>
+									<div class="col col-md-3">
+										<div class="form-check">
+											<div class="radio">
+												<label for="radio<?php echo $quizz['id']; ?>" class="form-check-label ">
+													<input type="radio" id="radio<?php echo $quizz['id']; ?>" name="radio<?php echo $quizz['id']; ?>" value="true" class="form-check-input">True
+												</label>
+											</div>
+											<div class="radio">
+												<label for="radio<?php echo $quizz['id']; ?>" class="form-check-label ">
+													<input type="radio" id="radio<?php echo $quizz['id']; ?>" name="radio<?php echo $quizz['id']; ?>" value="fale" class="form-check-input">False
+												</label>
+											</div>
+										</div>
+									</div>
+									</div>
+				                 <?php endforeach ?>
+								<!-- <div class="row form-group">
 									<div class="col col-md-9"><label class=" form-control-label">What's your name?</label></div>
 									<div class="col col-md-3">
 										<div class="form-check">
@@ -37,47 +55,22 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row form-group">
-									<div class="col col-md-9"><label class=" form-control-label">How are you?</label></div>
-									<div class="col col-md-3">
-										<div class="form-check">
-											<div class="radio">
-												<label for="radio1" class="form-check-label ">
-													<input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">True
-												</label>
-											</div>
-											<div class="radio">
-												<label for="radio2" class="form-check-label ">
-													<input type="radio" id="radio2" name="radios" value="option2" class="form-check-input">False
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row form-group">
-									<div class="col col-md-6"><label class=" form-control-label">How are you?</label></div>
-									<div class="col col-md-6">
-										<div class="form-check">
-											<div class="radio">
-												<label for="radio1" class="form-check-label ">
-													<input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">True
-												</label>
-											</div>
-											<div class="radio">
-												<label for="radio2" class="form-check-label ">
-													<input type="radio" id="radio2" name="radios" value="option2" class="form-check-input">False
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
+								</div> -->
+								
 								<div class="row form-group">
 									<div class="col col-md-12"><span>Exam:  <?php echo $exam['question']; ?></span></div>
-									<form class="col col-md-12" id="form" name="f2" action="compile.php" method="POST">
+									<form class="col col-md-12" id="form" name="f2" method="POST">
 										<div class="col col-md-12">
-											<input type="submit" id="st" name="st" class="btn btn-primary btn-sm" value="Run Code">
+											<button type="button" id="st" name="st" class="btn btn-primary btn-sm">Run Code</button>
+
+											<button type="button" id="check-code" name="check-code" class="btn btn-primary btn-sm">Check Code</button>
 										</div>
+
+										<div class="col col-md-12">
+											<br>
+											<div id="result-check-code"></div>
+										</div>
+
 										<div class="col col-md-8">
 											<label for="ta">Write Your Code</label>
 											<textarea name="code" cols="9" rows="9" placeholder="Code..." class="form-control">    #include <iostream>
@@ -96,24 +89,15 @@
 											<textarea name="input" cols="9" rows="9" placeholder="Input" class="form-control"></textarea>
 										</div>
 									</form>
-									<script type="text/javascript">
-  
-									 	$(document).ready(function(){
-
-									    	$("#st").click(function(){
-									  
-									        	$("#div").html("Loading ......");
-									    		});
-									  		});
-
-
-									</script>
+								
 
 										<script type="text/javascript">
 										//wait for page load to initialize script
 											$(document).ready(function(){
 											    //listen for form submission
-											    $('form').on('submit', function(e){
+											    $("#st").on('click', function(e){
+
+											    	$("#div").html("Loading ......");
 												    //prevent form from submitting and leaving page
 												    e.preventDefault();
 
@@ -128,6 +112,34 @@
 
 											                // locate the div with #result and fill it with returned data from process.php
 											                $('#div').html(output);
+											            }, 
+											            error: function(error) {
+											            	console.log(error);
+											            }
+											        });
+											    });
+
+											    $("#check-code").on('click', function(e){
+												    //prevent form from submitting and leaving page
+												    e.preventDefault();
+
+												    $("#result-check-code").html(
+												    	'<div class="alert alert-info">' + 
+												    	'Loading...' + 
+												    	'</div>'
+												    );
+
+											      // AJAX 
+											     	$.ajax({
+											            type: "POST", //type of submit
+											            cache: false, //important or else you might get wrong data returned to you
+											            url: "student.php?action=compiler&id=<?php echo $exam['id']; ?>", //destination
+											            datatype: "html", //expected data format from process.php
+											            data: $('form').serialize(), //target your form's data and serialize for a POST
+											            success: function(output) { // data is the var which holds the output of your process.php
+
+											                // locate the div with #result and fill it with returned data from process.php
+											                $('#result-check-code').html(output);
 											            }
 											        });
 											    });
