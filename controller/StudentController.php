@@ -38,6 +38,8 @@ class StudentController extends Controller {
             $this->compiler();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'submit' && isset($_GET['id'])) {
             $this->submit();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'enjoy_prog' && isset($_GET['id'])) {
+            $this->enjoy_prog();
         } else {
             $this->index();
         }
@@ -75,6 +77,36 @@ class StudentController extends Controller {
         $data_render = $this->course->data_render($id);
         $question = $this->quizz->getQuizz_by_course($id);
         $exam = $this->exam->get_exam_by_course($id);
+        require_once(dirname(__FILE__) . '/../view/student/course_render.php');
+        return;
+    }
+
+    public function enjoy_prog() {
+        $id = $_GET['id'];
+        var_dump($id);
+        $prog = $this->prog->getProgram($id);
+        var_dump($prog);
+        $check = $this->prog_st->check_exist($id, $_SESSION['arUser']['id']);
+        if ($check == 0) {
+                $prog_st_enjoy = $this->prog_st->store_prog_st($id, $_SESSION['arUser']['id']);
+                $prog_megs = $this->prog_st->get_pro_messg($id, $_SESSION['arUser']['id']);
+                $subject = "{$_SESSION['arUser']['fullname']} waiting accept to  {$prog['program_name']}";
+                $body = "{$_SESSION['arUser']['fullname']} waiting accept to  {$prog['program_name']}";
+                // Create notification
+                $noti = $this->prog_st->update_prog_mesg($prog_megs['id'],$subject,$body, $prog['user_id']);
+                $_SESSION['enjoy_prog'] = "Enjoy to Program {$prog['program_name']} <br/> Wait for {$prog['fullname']} accept.";
+                header("Location: student.php?action=viewprogram");
+            }
+        else {
+            $prog_st = $this->prog_st->get_prog_st_data($id, $_SESSION['arUser']['id']);
+            if ($prog_st['approve'] == 1) {
+                $_SESSION['enjoy_prog'] = " You have participated in this program.";
+                header("Location: student.php?action=viewprogram");
+            }else {
+                 $_SESSION['enjoy_prog'] = "Enjoy to Program {$prog['program_name']} <br/> Wait for {$prog['fullname']} accept.";;
+                header("Location: student.php?action=viewprogram");
+            }
+        }
         require_once(dirname(__FILE__) . '/../view/student/course_render.php');
         return;
     }

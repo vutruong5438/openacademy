@@ -8,9 +8,9 @@
                         <h1>Courses</h1>
                     </div>
                     <?php 
-                if (isset($_SESSION['success'])) {
-                        echo $_SESSION['success'];
-                        unset($_SESSION['success']);
+                if (isset($_SESSION['enjoy_prog'])) {
+                        echo $_SESSION['enjoy_prog'];
+                        unset($_SESSION['enjoy_prog']);
                     }
                 if (isset($_SESSION['danger'])) {
                         echo $_SESSION['danger'];
