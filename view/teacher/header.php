@@ -25,6 +25,7 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <script src="ckeditor/ckeditor.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
@@ -91,24 +92,37 @@
                         <div class="dropdown for-notification">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">5</span>
+                            <span class="count bg-danger" id="count_noti"></span>
                           </button>
-                          <div class="dropdown-menu" aria-labelledby="notification">
-                            <p class="red">You have 3 Notification</p>
-                            <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <i class="fa fa-check"></i>
-                                <p>Server #1 overloaded.</p>
-                            </a>
-                            <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <i class="fa fa-info"></i>
-                                <p>Server #2 overloaded.</p>
-                            </a>
-                            <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <i class="fa fa-warning"></i>
-                                <p>Server #3 overloaded.</p>
-                            </a>
+                          <div class="dropdown-menu" aria-labelledby="notification" id="show_notification">
                           </div>
                         </div>
+                        <script type="text/javascript">
+                            $(document).ready(function(){
+                                load_unseen_notification();
+                                function load_unseen_notification(view = ''){
+                                    console.log('1212121');
+                                    $.ajax({
+                                        url:"teacher.php?action=load_notification",
+                                        method:"POST",
+                                        data:{view:view},
+                                        dataType:"json",
+                                        success:function(data){
+                                            $('#show_notification').html(data.notification);
+                                                if(data.unseen_notification > 0)
+                                                {
+                                                    $('#count_noti').html(data.unseen_notification);
+                                                }
+                                        }
+                                    })
+                                }  
+
+                                // $(document).on('click', '.dropdown-toggle', function(){
+                                //     $('.count').html('');
+                                //     load_unseen_notification('yes');
+                                // });
+                            });
+                        </script>
                     </div>
                 </div>
 

@@ -5,6 +5,10 @@ require_once(dirname(__FILE__) . '/../model/Course.php');
 require_once(dirname(__FILE__) . '/../model/Program.php');
 require_once(dirname(__FILE__) . '/../model/Quizz.php');
 require_once(dirname(__FILE__) . '/../model/Exam.php');
+require_once(dirname(__FILE__) . '/../model/Prog_st.php');
+require_once(dirname(__FILE__) . '/../model/Cour_st.php');
+
+
 
 class TeacherController extends Controller {
 
@@ -19,6 +23,8 @@ class TeacherController extends Controller {
         $this->prog = new Program();
         $this->quizz = new Quizz();
         $this->exam = new Exam();
+         $this->prog_st = new Progr_St();
+        $this->cour_st = new Course_St();
     }
 
     public function getRoute() {
@@ -60,6 +66,8 @@ class TeacherController extends Controller {
             $this->exam_io_add();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'exam_io_store' && isset($_GET['id'])) {
             $this->exam_io_store();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'load_notification') {
+            $this->load_notification();
         } else {
             $this->index();
         }
@@ -77,43 +85,53 @@ class TeacherController extends Controller {
 
     public function index() {
         // $listUser = $this->user->getData();
+        
         require_once(dirname(__FILE__) . '/../view/teacher/index.php');
         return;
     }
 
-    // public function create() {
-    //     require_once(dirname(__FILE__) . '/../view/teacher/create.php');
-    //     return;
-    // }
-
-    // public function store() {
-    //     $request = $_POST;
-        
-    //     $kiemTra = $this->user->kiemTraUsername($request['ten_dang_nhap']);
-    //     if($kiemTra){
-    //         $_SESSION['danger'] = 'Đã trùng tên đăng nhập, vui lòng chọn tên khác';
-    //         header("Location:user.php");exit();
-    //     }
-    //     $result = $this->user->store($request);
-
-    //     if ($result) {
-    //         $_SESSION['success'] = 'Đã thêm thành công';
-    //         header("Location:user.php");
-    //     } else {
-    //         $_SESSION['danger'] = 'Có lỗi khi thêm';
-    //         header("Location:user.php");
-    //     }
-    //     return;
-    // }
-
-    // public function edit() {
-    //     $id_user = $_GET['id_user'];
-
-    //     $infoUser = $this->user->getUser($id_user);
-
-    //     require_once(dirname(__FILE__) . '/../view/teacher/edit.php');
-    //     return;
-    // }
+    public function load_notification() {
+        if(isset($_POST["view"])){
+            // $query = "SELECT * FROM prog_student WHERE user_id = :user_id AND approve = 0";
+            // $statement = $connect->prepare($query);
+            // $statement->execute(
+            //     array(
+            //         ':user_id'  => $_SESSION['arUser']['id']
+            //     )
+            // );
+            // $result = $statement->fetchAll();
+            // $total_row = $statement->rowCount();
+            // $output = '';
+            // if($total_row > 0){
+            //     foreach($result as $row){
+            //         $user_name = '';
+            //         if($row['user_id'] == $_SESSION['user_id']){
+            //             $user_name = '<img src="images/'.$row["user_image"].'" class="img-thumbnail" width="40" height="40" /> You have';
+            //         } else {
+            //             $user_name = '<img src="images/'.$row["user_image"].'" class="img-thumbnail" width="40" height="40" /> '.$row['user_name'].' has ';
+            //         }
+            //         $output .= '
+            //                <li>
+            //                  <a href="#">
+            //                   <strong>'.$user_name.'</strong> like your post "'.substr($row["description"], 0, 25).'"
+            //                  </a>
+            //                 </li>
+            //                ';
+            //     }
+            // } else {
+            //     $output .= '
+            //         <li><a href="#" class="text-bold text-italic">No Notification Found</a></li>
+            //     ';
+            // }
+            // $data = array(
+            //    'notification'   => $output,
+            //    'unseen_notification' => $total_row
+            // );
+            $data = $this->prog_st->getmessg($_SESSION['arUser']['id']);
+            echo $data;
+            // echo "abc";
+        }
+    }
 
 
     public function course_edit() {

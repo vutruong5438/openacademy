@@ -31,6 +31,48 @@ class Progr_St extends Model {
         return $info;
     }
 
+    public function getmessg($user) {
+        // $sql = "SELECT * FROM prog_student WHERE user_id = '{$user}' AND approve = 0";
+        // $result = $this->conn->query($sql);
+        // $listnoti = array();
+        // while ($listnoti = mysqli_fetch_assoc($result)) {
+        //     $listNotis[] = $listnoti;
+        // }
+
+        // return $listNotis;
+
+        $query = "SELECT * FROM prog_student WHERE user_id = '{$user}' AND approve = 0";
+
+        $statement = $this->conn->query($query);
+        $total_row = $statement->num_rows;
+
+        $listCourse = array();
+        while ($listCourse = mysqli_fetch_assoc($statement)) {
+            $listCourses[] = $listCourse;
+        }
+        $output = '';
+        if($total_row > 0){
+            foreach($listCourses as $row) {
+               $output .= '
+                        <a class="dropdown-item media bg-flat-color-1" href="#">
+                            <i class="fa fa-check"></i>
+                            <p>'.$row["body"].'.</p>
+                        </a>
+                       ';
+            }
+        } else {
+            $output .= '
+                <a href="#" class="dropdown-item media bg-flat-color-1">No Notification Found</a>
+            ';
+        }
+        $data = array(
+           'notification'   => $output,
+           'unseen_notification' => $total_row
+        );
+       
+        return json_encode($data);
+    }
+
     public function store_prog_st($prog,$st) {
         $sql = "INSERT INTO prog_student(student_id, program_id) VALUES ('{$st}', '{$prog}')";
         $result = $this->conn->query($sql);
