@@ -61,6 +61,9 @@
                             <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_exam">Exam</a></li>
                             
                         </ul>
+                        <li class="active">
+                            <a href="teacher.php?action=view_waccept"> <i class="menu-icon fa fa-check-square"></i>Wait to Accecpt</a>
+                        </li>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -108,6 +111,10 @@
                                         data:{view:view},
                                         dataType:"json",
                                         success:function(data){
+                                            for(var key in data) {
+                                                $('#msgid').append(key);
+                                                $('#msgid').append('=' + data[key] + '<br />');
+                                            }
                                             $('#show_notification').html(data.notification);
                                                 if(data.unseen_notification > 0)
                                                 {

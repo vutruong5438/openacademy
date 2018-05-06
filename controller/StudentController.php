@@ -60,16 +60,23 @@ class StudentController extends Controller {
     public function view_course_by_program() {
         $id = $_GET['id'];
         // $prog_name = $_GET['program_name'];
-        $list = $this->course->view_course_by_program($id, $_SESSION['arUser']['id']);
-        foreach ($list as $course) {
-            $check = $this->cour_st->check_exist($course['id'], $_SESSION['arUser']['id']);
-            if ($check == 0) {
-                $s = $this->cour_st->cur_st_store($course['id'], $_SESSION['arUser']['id']);
+        
+        $check_access = $this->prog_st->check_access($id, $_SESSION['arUser']['id']);
+        if ($check_access == 1){
+            $list = $this->course->view_course_by_program($id, $_SESSION['arUser']['id']);
+            foreach ($list as $course) {
+                $check = $this->cour_st->check_exist($course['id'], $_SESSION['arUser']['id']);
+                if ($check == 0) {
+                    $s = $this->cour_st->cur_st_store($course['id'], $_SESSION['arUser']['id']);
+                }
             }
+            require_once(dirname(__FILE__) . '/../view/student/view_course.php');
+            return;
+        } else {
+            $_SESSION['refuse'] = "True";
+            header("Location: student.php?action=viewprogram");
         }
-
-        require_once(dirname(__FILE__) . '/../view/student/view_course.php');
-        return;
+        
     }
     public function course_render() {
         $id = $_GET['id'];

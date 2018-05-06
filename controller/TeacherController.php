@@ -68,6 +68,10 @@ class TeacherController extends Controller {
             $this->exam_io_store();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'load_notification') {
             $this->load_notification();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'view_waccept') {
+            $this->view_waccept();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'accecpt_prog' && isset($_GET['id'])) {
+            $this->accecpt_prog();
         } else {
             $this->index();
         }
@@ -81,6 +85,29 @@ class TeacherController extends Controller {
         $listprogs = $this->prog->get_prog_data();
         require_once(dirname(__FILE__) . '/../view/teacher/program.php');
         return;
+    }
+
+    public function view_waccept() {
+        $listprogs_wait = $this->prog_st->get_wait_prog_data($_SESSION['arUser']['id']);
+        require_once(dirname(__FILE__) . '/../view/teacher/view_approve.php');
+        return;
+    }
+    public function accecpt_prog() {
+        $id = $_GET['id'];
+        $result = $this->prog_st->accecpt_prog($id);
+
+        if ($result === True) {
+            $_SESSION['accecpt_success'] = 'Success';
+            header("Location: teacher.php?action=view_waccept");
+            exit();
+            return;
+        } else {
+            $_SESSION['accecpt_danger'] = 'Fail';
+            header("Location: teacher.php?action=view_waccept");
+            exit();
+            return;
+        }
+        
     }
 
     public function index() {

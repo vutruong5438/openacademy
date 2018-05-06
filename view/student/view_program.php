@@ -33,9 +33,21 @@
                                         <i class="fa fa-search"></i>
                                       </button>
                                     </div>
-                                    <input type="text" id="input1-group2" name="input1-group2" placeholder="Username" class="form-control">
+                                    <input type="text" id="input1-group2" name="input1-group2" placeholder="Program" class="form-control">
                                   </div>
                                 </div>
+                                <?php
+                                        if (isset($_SESSION['refuse'])) {
+                                            echo '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                                                <span class="badge badge-pill badge-danger">Fail</span>
+                                                                    You do not accept for this Program.
+                                                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>';
+                                            unset($_SESSION['refuse']);
+                            }  
+                                   ?>
                               </div>
                             </form>
                         </>
