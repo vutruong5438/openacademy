@@ -39,7 +39,7 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Khóa Học</th>
+                        <th>Chuyên Đề</th>
                         <th>Bài Giảng</th>
                         <th>Câu Hỏi</th>
                         <th>Đáp Án</th>
@@ -57,9 +57,9 @@
                                 <td><?php echo $quizz['question']; ?></td>
                                 <td><?php
                                         if($quizz['answer'] == 1){
-                                            echo "True";
+                                            echo "Đúng";
                                         } else{
-                                            echo "False";
+                                            echo "Sai";
                                         } 
                                          
                                     ?>
@@ -67,7 +67,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="teacher.php?action=quizz_edit&id=<?php echo $quizz['id']; ?>" class="text-primary">Sửa</a> / 
-                                    <a class="text-danger" href="teacher.php?action=destroy&id=<?php echo $quizz['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Xóa</a>
+                                    <a class="text-danger" href="teacher.php?action=quizz_destroy&id=<?php echo $quizz['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach ?> 

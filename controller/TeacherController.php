@@ -42,6 +42,8 @@ class TeacherController extends Controller {
             $this->course_edit();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'course_update' && isset($_GET['id'])) {
             $this->course_update();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'course_destroy' && isset($_GET['id'])) {
+            $this->course_destroy();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'view_quizz') {
             $this->get_quizz_data();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'quizz_add') {
@@ -52,6 +54,8 @@ class TeacherController extends Controller {
             $this->quizz_edit();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'quizz_update' && isset($_GET['id'])) {
             $this->quizz_update();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'quizz_destroy' && isset($_GET['id'])) {
+            $this->quizz_destroy();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'view_exam') {
             $this->get_exam_data();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'exam_add') {
@@ -62,6 +66,8 @@ class TeacherController extends Controller {
             $this->exam_edit();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'exam_update' && isset($_GET['id'])) {
             $this->exam_update();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'exam_destroy' && isset($_GET['id'])) {
+            $this->exam_destroy();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'exam_io_add' && isset($_GET['id'])) {
             $this->exam_io_add();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'exam_io_store' && isset($_GET['id'])) {
@@ -70,6 +76,8 @@ class TeacherController extends Controller {
             $this->load_notification();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'view_waccept') {
             $this->view_waccept();
+        } elseif (isset($_GET['action']) && $_GET['action'] == 'view_student') {
+            $this->view_student();
         } elseif (isset($_GET['action']) && $_GET['action'] == 'accecpt_prog' && isset($_GET['id'])) {
             $this->accecpt_prog();
         } else {
@@ -90,6 +98,12 @@ class TeacherController extends Controller {
     public function view_waccept() {
         $listprogs_wait = $this->prog_st->get_wait_prog_data($_SESSION['arUser']['id']);
         require_once(dirname(__FILE__) . '/../view/teacher/view_approve.php');
+        return;
+    }
+
+    public function view_student() {
+        $listprogs_wait = $this->prog_st->get_wait_prog_data2($_SESSION['arUser']['id']);
+        require_once(dirname(__FILE__) . '/../view/teacher/view_student.php');
         return;
     }
     public function accecpt_prog() {
@@ -283,6 +297,7 @@ class TeacherController extends Controller {
         $id = $_GET['id'];
 
         $infoQuizz = $this->exam->getExam($id);
+        $list_io =  $this->exam->getIO($id);
 
         require_once(dirname(__FILE__) . '/../view/teacher/exam_edit.php');
         return;
@@ -356,17 +371,49 @@ class TeacherController extends Controller {
 
 
 
-    public function destroy() {
-        $ten_dang_nhap = $_GET['id'];
 
-        $result = $this->user->destroy($ten_dang_nhap);
+    public function course_destroy() {
+        $id = $_GET['id'];
+
+        $result = $this->course->destroy($id);
+        $prog_id = $this->course->get_program_id($id);
 
         if ($result) {
             $_SESSION['success'] = 'Đã xóa thành công';
-            header("Location: teacher.php?action=viewcourse");
+            header("Location: teacher.php?action=viewcours&id={$prog_id}");
         } else {
             $_SESSION['danger'] = 'Có lỗi khi xóa';
-            header("Location: teacher.php?action=viewcourse");
+            header("Location: teacher.php?action=viewcours&id={$prog_id}");
+        }
+        return;
+    }
+
+     public function quizz_destroy() {
+        $id = $_GET['id'];
+
+        $result = $this->quizz->destroy($id);
+
+        if ($result) {
+            $_SESSION['success'] = 'Đã xóa thành công';
+            header("Location: teacher.php?action=view_quizz");
+        } else {
+            $_SESSION['danger'] = 'Có lỗi khi xóa';
+            header("Location: teacher.php?action=view_quizz");
+        }
+        return;
+    }
+
+     public function exam_destroy() {
+        $id = $_GET['id'];
+
+        $result = $this->exam->destroy($id);
+
+        if ($result) {
+            $_SESSION['success'] = 'Đã xóa thành công';
+            header("Location: teacher.php?action=view_exam");
+        } else {
+            $_SESSION['danger'] = 'Có lỗi khi xóa';
+            header("Location: teacher.php?action=view_exam");
         }
         return;
     }

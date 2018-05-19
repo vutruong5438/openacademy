@@ -54,14 +54,21 @@
                     <h3 class="menu-title">Chuyên Mục</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-laptop"></i>Khóa Học</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_program">Chuyền Đề</a></li>
+                        <ul class="sub-menu children dropdown-menu" id="top">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_program">Chuyên Đề</a></li>
                             <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=viewcourse">Bài Giảng</a></li>
                             <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_quizz">Trắc Nghiệm</a></li>
                             <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_exam">Bài Tập</a></li>
                             
                         </ul>
-                        <a href="teacher.php?action=view_waccept" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-check-square"></i>Yêu Cầu Tham Gia </a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-suitcase"></i>Quản lý yêu cầu</a>
+                        <ul class="sub-menu children dropdown-menu" id="buttom">
+                            <li><i class="menu-icon fa fa-minus-square"></i><a href="teacher.php?action=view_waccept">Yêu Cầu Tham Gia</a></li>
+                            <li><i class="menu-icon fa fa-check-square"></i><a href="teacher.php?action=view_student"></i>Đã gia nhập</a></li>  
+                        </ul>
+                       <!--  <a href="teacher.php?action=view_waccept" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-check-square"></i>Yêu Cầu Tham Gia </a> -->
                         <!-- <li class="active">
                             <a href="teacher.php?action=view_waccept"> <i class="menu-icon fa fa-check-square"></i>Yêu Cầu Tham Gia</a>
                         </li> -->

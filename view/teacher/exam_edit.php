@@ -46,6 +46,18 @@
                         <textarea name="question" id="question" rows="" placeholder="Question..." class="form-control"><?php echo $infoQuizz['question']; ?></textarea>
                       </div>
                     </div>
+                    <?php foreach ($list_io as $key => $io): ?>
+                      <div class="row form-group">
+                        <div class="col col-md-1"><label for="text-input" class=" form-control-label">Input</label></div>
+                        <div class="col col-md-5">
+                          <input type="text" id="input" name="input" placeholder="Input" class="form-control" value="<?php echo $io['input']; ?>">
+                        </div>
+                        <div class="col col-md-1"><label for="text-input" class=" form-control-label">Output</label></div>
+                        <div class="col col-md-5">
+                          <input type="text" id="output" name="output" placeholder="Output" class="form-control" value="<?php echo $io['output']; ?>">
+                        </div>
+                      </div>
+                    <?php endforeach ?>
                     <div class="">
                   <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-dot-circle-o"></i> Sửa

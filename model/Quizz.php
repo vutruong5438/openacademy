@@ -78,7 +78,7 @@ class Quizz extends Model {
     }
 
     public function destroy($id) {
-        $sql = "DELETE FROM course WHERE id = '{$id}'";
+        $sql = "DELETE FROM quizz WHERE id = '{$id}'";
 
         $result = $this->conn->query($sql);
 

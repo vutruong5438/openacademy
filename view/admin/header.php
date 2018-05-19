@@ -51,18 +51,17 @@
                     </li>
                     <h3 class="menu-title">Chuyện Mục</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-laptop"></i>Program</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-laptop"></i>Chuyên Đề</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-puzzle-piece"></i><a href="admin.php?action=view_prog">Quản Lý Chuyền Đề</a></li>
-                                <li><i class="fa fa-id-badge"></i><a href="infochuyendo.html">Thông Tin</a></li>
+                                <li><i class="fa fa-puzzle-piece"></i><a href="admin.php?action=view_prog">Quản Lý Chuyên Đề</a></li>
+                            
                             </ul>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-table"></i>Thành Viên</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="admin.php?action=teachers">Teacher</a></li>
                             <li><i class="fa fa-table"></i><a href="admin.php?action=students">Student</a></li>
-                            <li><i class="fa fa-table"></i><a href="admin.php?action=students">Wait for access</a></li>
-                        </ul>
+                            
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

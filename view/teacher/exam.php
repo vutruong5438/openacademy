@@ -56,7 +56,7 @@
                                 <td class="text-center">
                                     <a href="teacher.php?action=exam_edit&id=<?php echo $quizz['id']; ?>" class="text-primary">Sửa</a> / 
                                     <a href="teacher.php?action=exam_io_add&id=<?php echo $quizz['id']; ?>" class="text-primary">Thêm In-Out Put</a> /
-                                    <a class="text-danger" href="teacher.php?action=destroy&id=<?php echo $quizz['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Del</a>
+                                    <a class="text-danger" href="teacher.php?action=exam_destroy&id=<?php echo $quizz['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach ?> 

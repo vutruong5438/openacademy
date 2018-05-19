@@ -5,7 +5,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Teachers</h1>
+                        <h1>Sinh Viên</h1>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-header">
-                  <strong>Teacher Info</strong>
+                  <strong>Thông tin Sinh viên</strong>
                 </div>
                 <div class="card-body card-block">
                   <form method="post" enctype="multipart/form-data" class="form-horizontal" action="admin.php?action=student_update&id=<?php echo $infoUser['id']; ?>">
@@ -27,14 +27,14 @@
                     </div>
                     <div class="row form-group">
                       <div class="col col-md-3">
-                        <label for="text-input" class=" form-control-label">FullName</label>
+                        <label for="text-input" class=" form-control-label">Họ và Ttên</label>
                       </div>
                       <div class="col-12 col-md-9">
                         <input type="text" name="fullname" placeholder="FullName" class="form-control" value="<?php echo $infoUser['fullname']?>" >
                       </div>
                     </div>
                     <div class="row form-group">
-                      <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email Input</label></div>
+                      <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email</label></div>
                       <div class="col-12 col-md-9">
                         <input type="email" name="email" placeholder="Enter Email" class="form-control" value="<?php echo $infoUser['email']?>">
                         </div>
@@ -50,10 +50,10 @@
                       <div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea></div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm" name="submit">
-                      <i class="fa fa-dot-circle-o"></i> Submit
+                      <i class="fa fa-dot-circle-o"></i> Sửa
                     </button>
                     <button type="reset" class="btn btn-danger btn-sm">
-                      <i class="fa fa-ban"></i> Reset
+                      <i class="fa fa-ban"></i> Đặt lại
                     </button>
                   </form>
                 </div>

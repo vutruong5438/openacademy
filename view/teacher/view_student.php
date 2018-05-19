@@ -5,7 +5,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Yêu Cầu Gia Nhập</h1>
+                        <h1>Danh sách đã gia nhập</h1>
                     </div>
                     
                 </div>
@@ -22,7 +22,7 @@
                         <div class="card-header">
                             <strong class="card-title">Danh Sách</strong>
                         </div>
-                        <?php 
+                        <!-- <?php 
                         if (isset($_SESSION['accecpt_success'])) {
                                 echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                                                     <span class="badge badge-pill badge-success">Success</span>
@@ -43,16 +43,15 @@
                                                 </div>';
                                 unset($_SESSION['accecpt_danger']);
                             } 
-                    ?>
+                    ?> -->
                         <div class="card-body">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
                       <tr>
                         <th>STT</th>
                         <th>Sinh Viên</th>
-                        <th>Chuyên Đề</th>
+                        <th>Khóa Học</th>
                         <th>Trạng Thái</th>
-                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -63,15 +62,12 @@
                                     <td><?php echo $stt; ?></td>
                                     <td><?php echo $wait['fullname']; ?></td>
                                     <td><?php echo $wait['program_name']; ?></td>
-                                    <td>Chờ chấp nhận</td>
-                                    <td>
-                                        <a class="text-primary" href="teacher.php?action=accecpt_prog&id=<?php echo $wait['id']; ?>" onclick="return confirm('Bạn có muốn chấp nhận Sinh viên này cho Chuyên đề của bạn?')"  role="button"><i class="menu-icon fa fa-check-square"></i> Chấp Nhận</a>
-                                    </td>
+                                    <td>Đã Chấp Nhận</td>
                                 </tr>
                             <?php endforeach ?>
                         <?php } else {
                             echo '<tr ">
-                                    <td colspan="5">Bây giờ không có yêu cầu gia nhập</td>
+                                    <td colspan="5">Bây giờ không Sinh viên tham gia</td>
                                 </tr>';
                         } ?>    
                     </tbody>

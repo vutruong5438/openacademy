@@ -28,12 +28,12 @@
 										<div class="form-check">
 											<div class="radio">
 												<label for="radio<?php echo $quizz['id']; ?>" class="form-check-label ">
-													<input type="radio" name="quizz<?php echo $quizz['id']; ?>" value="1" class="form-check-input">True
+													<input type="radio" name="quizz<?php echo $quizz['id']; ?>" value="1" class="form-check-input">Đúng
 												</label>
 											</div>
 											<div class="radio">
 												<label for="radio<?php echo $quizz['id']; ?>" class="form-check-label ">
-													<input type="radio" name="quizz<?php echo $quizz['id']; ?>" value="0" class="form-check-input">False
+													<input type="radio" name="quizz<?php echo $quizz['id']; ?>" value="0" class="form-check-input">Sai
 												</label>
 											</div>
 										</div>
@@ -59,7 +59,7 @@
 								</div> -->
 								
 								<div class="row form-group">
-									<div class="col col-md-12"><span>Exam:  <?php echo $exam['question']; ?></span></div>
+									<div class="col col-md-12"><span>Bài tập:  <?php echo $exam['question']; ?></span></div>
 									
 										<div class="col col-md-12">
 											<button type="button" id="st" name="st" class="btn btn-primary btn-sm">Run Code</button>
@@ -77,9 +77,7 @@
 											<textarea name="code" cols="9" rows="9" placeholder="Code..." class="form-control">
 
 #include <iostream>
- 
 using namespace std;
- 
 int main()
 {
    int a, b, c;

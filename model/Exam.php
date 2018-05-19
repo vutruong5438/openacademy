@@ -76,6 +76,19 @@ class Exam extends Model {
         return $info;
     }
 
+    public function getIO($id) {
+        $sql = "SELECT * FROM in_out_exam WHERE exam_id = '{$id}'";
+
+        $result = $this->conn->query($sql);
+        $listCourse = array();
+
+        while ($listCourse = mysqli_fetch_assoc($result)) {
+            $listCourses[] = $listCourse;
+        }
+
+        return $listCourses;
+    }
+
 
     public function exam_update($request, $id) {
     
@@ -95,7 +108,7 @@ class Exam extends Model {
     }
 
     public function destroy($id) {
-        $sql = "DELETE FROM course WHERE id = '{$id}'";
+        $sql = "DELETE FROM exam WHERE id = '{$id}'";
 
         $result = $this->conn->query($sql);
 

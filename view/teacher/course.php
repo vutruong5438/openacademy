@@ -38,7 +38,7 @@
                         <th>STT</th>
                         <th>Bài Giảng</th>
                         <th>Giảng Viên</th>
-                        <th>Chuyền đề</th>
+                        <th>Chuyên đề</th>
                         <th>Thông tin</th>
                         <th>Thao Tác</th>
                       </tr>
@@ -54,7 +54,7 @@
                                 <td></td>
                                 <td>
                                     <a href="teacher.php?action=course_edit&id=<?php echo $course['id']; ?>" class="text-primary">Sửa</a> / 
-                                    <a class="text-danger" href="teacher.php?action=destroy&id=<?php echo $course['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Xóa</a>
+                                    <a class="text-danger" href="teacher.php?action=course_destroy&id=<?php echo $course['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

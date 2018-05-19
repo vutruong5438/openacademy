@@ -113,6 +113,21 @@ class Progr_St extends Model {
         }
     }
 
+    public function get_wait_prog_data2($user) {
+        $sql = "SELECT prog_student.student_id, prog_student.id, prog_student.program_id, program.program_name, users.fullname FROM prog_student INNER JOIN program ON prog_student.program_id = program.id INNER JOIN users ON prog_student.student_id = users.id WHERE prog_student.user_id = '{$user}' AND prog_student.approve = 1";
+        $result = $this->conn->query($sql);
+        $total_row = $result->num_rows;
+        if($total_row > 0){
+            $listCourse = array();
+            while ($listCourse = mysqli_fetch_assoc($result)) {
+                $listCourses[] = $listCourse;
+            }
+            return $listCourses;
+        } else {
+            return 0;
+        }
+    }
+
     public function accecpt_prog($id) {
         $sql = "UPDATE prog_student SET approve = 1 WHERE id = '{$id}'";
         $result = $this->conn->query($sql);

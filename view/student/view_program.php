@@ -9,8 +9,16 @@
                 </div>
                 <?php 
                     if (isset($_SESSION['enjoy_prog'])) {
-                        echo $_SESSION['enjoy_prog'];
-                        unset($_SESSION['enjoy_prog']);
+                        // echo $_SESSION['enjoy_prog'];
+                        
+                        echo '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                            <span class="badge badge-pill badge-danger">Fail</span>';
+                                                echo $_SESSION['enjoy_prog'];
+                                              echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>';
+                         unset($_SESSION['enjoy_prog']);
                     }
                  ?>
             </div>
@@ -40,7 +48,7 @@
                                         if (isset($_SESSION['refuse'])) {
                                             echo '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
                                                                 <span class="badge badge-pill badge-danger">Fail</span>
-                                                                    Bạn chưa được chấp nhận cho Khóa hocj này.
+                                                                    Bạn chưa được chấp nhận cho Khóa học này.
                                                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
@@ -69,12 +77,11 @@
                                         </div>
                                         <div class="card-body">
                                             <p class="card-text">
-                                                Create Date: <?php echo date("d-m-Y", strtotime($program['date_create'])) ; ?>
+                                               Ngày tạo: <?php echo date("d-m-Y", strtotime($program['date_create'])) ; ?>
                                             </p>
                                             <p class="card-text">
-                                                Create by Administrator <br/>
+                                                Được tạo bởi Administrator <br/>
                                                 <?php echo $program['fullname']; ?><br/>
-                                                5 People
                                             </p>
                                         </div>
                                     </div>
