@@ -15,7 +15,7 @@ class Progr_St extends Model {
         $sql = "SELECT * FROM prog_student WHERE student_id = '{$st}' AND  program_id = '{$prog}'";
         $result = $this->conn->query($sql);
 
-        $total_row = $statement->num_rows;
+        $total_row = $result->num_rows;
 
         if($total_row > 0){
             return 1;

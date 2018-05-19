@@ -37,12 +37,12 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" colspan="4"><?php echo $list[0]['program_name']; ?></th>
+                    <th scope="col" colspan="4"><?php echo $listcourse[0]['program_name']; ?></th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php $stt=0; ?>
-                  <?php foreach ($list as $key => $course): $stt++; ?>
+                  <?php foreach ($listcourse as $key => $course): $stt++; ?>
                   <tr>
                       <th scope="row"><?php echo $stt; ?></th>
                       <td colspan="2"><?php echo $course['course_name']; ?></td>

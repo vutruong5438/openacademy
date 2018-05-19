@@ -5,7 +5,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Quizzz</h1>
+                        <h1>Quản lý Câu hỏi</h1>
                     </div>
                     <?php 
                 if (isset($_SESSION['success'])) {
@@ -29,8 +29,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">List</strong>
-                            <a type="button" class="btn btn-outline-primary btn-sm float-right" href="teacher.php?action=quizz_add">Add Quizz</a>
+                            <strong class="card-title">Danh sách</strong>
+                            <a type="button" class="btn btn-outline-primary btn-sm float-right" href="teacher.php?action=quizz_add">Thêm</a>
                         </div>
                         <div class="card-body">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -39,10 +39,10 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Program</th>
-                        <th>Course</th>
-                        <th>Question</th>
-                        <th>Answer</th>
+                        <th>Khóa Học</th>
+                        <th>Bài Giảng</th>
+                        <th>Câu Hỏi</th>
+                        <th>Đáp Án</th>
 
                       </tr>
                     </thead>
@@ -66,8 +66,8 @@
                                     
                                 </td>
                                 <td class="text-center">
-                                    <a href="teacher.php?action=quizz_edit&id=<?php echo $quizz['id']; ?>" class="text-primary">Edit</a> / 
-                                    <a class="text-danger" href="teacher.php?action=destroy&id=<?php echo $quizz['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Del</a>
+                                    <a href="teacher.php?action=quizz_edit&id=<?php echo $quizz['id']; ?>" class="text-primary">Sửa</a> / 
+                                    <a class="text-danger" href="teacher.php?action=destroy&id=<?php echo $quizz['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach ?> 

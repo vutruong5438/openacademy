@@ -9,16 +9,16 @@
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">List</strong>
-                            <a type="button" class="btn btn-outline-primary btn-sm float-right" href="teacher.php?action=course_add">Add Courses</a>
+                            <a type="button" class="btn btn-outline-primary btn-sm float-right" href="teacher.php?action=course_add">Thêm Bài Giảng</a>
                         </div>
                         <div class="card-body">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Program</th>
-                        <th>Teacher</th>
-                        <th>Date Create</th>
+                        <th>Chuyên Đề</th>
+                        <th>Giảng Viên</th>
+                        <th>Ngày Tạo</th>
                         <th>Thông Tin</th>
                       </tr>
                     </thead>

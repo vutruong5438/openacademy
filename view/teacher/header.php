@@ -42,28 +42,29 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="view/images/logo.png" alt="Logo"></a>
+               <!--  <a class="navbar-brand" href="./"><img src="view/images/logo.png" alt="Logo"></a> -->
                 <a class="navbar-brand hidden" href="./"><img src="view/images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.php"> <i class="menu-icon fa fa-dashboard"></i>Home</a>
+                        <a href="index.php"> <i class="menu-icon fa fa-dashboard"></i>Trang Chủ</a>
                     </li>
-                    <h3 class="menu-title">Chuyện Mục</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Chuyên Mục</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-laptop"></i>Khóa Học</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_program">Program</a></li>
-                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=viewcourse">Course</a></li>
-                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_quizz">Quizz</a></li>
-                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_exam">Exam</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_program">Chuyền Đề</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=viewcourse">Bài Giảng</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_quizz">Trắc Nghiệm</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="teacher.php?action=view_exam">Bài Tập</a></li>
                             
                         </ul>
-                        <li class="active">
-                            <a href="teacher.php?action=view_waccept"> <i class="menu-icon fa fa-check-square"></i>Wait to Accecpt</a>
-                        </li>
+                        <a href="teacher.php?action=view_waccept" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-check-square"></i>Yêu Cầu Tham Gia </a>
+                        <!-- <li class="active">
+                            <a href="teacher.php?action=view_waccept"> <i class="menu-icon fa fa-check-square"></i>Yêu Cầu Tham Gia</a>
+                        </li> -->
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

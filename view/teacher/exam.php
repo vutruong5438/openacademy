@@ -5,7 +5,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Exam</h1>
+                        <h1>Bài Tập</h1>
                     </div>
                     <?php 
                 if (isset($_SESSION['success'])) {
@@ -29,8 +29,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">List</strong>
-                            <a type="button" class="btn btn-outline-primary btn-sm float-right" href="teacher.php?action=exam_add">Add Exam</a>
+                            <strong class="card-title">Danh sách</strong>
+                            <a type="button" class="btn btn-outline-primary btn-sm float-right" href="teacher.php?action=exam_add">Thêm</a>
                         </div>
                         <div class="card-body">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -39,9 +39,9 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Program</th>
-                        <th>Course</th>
-                        <th>Question</th>
+                        <th>Chuyên Đề</th>
+                        <th>Bài Giảng</th>
+                        <th>Câu Hỏi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -54,8 +54,8 @@
                                 <td><?php echo $quizz['course_name']; ?></td>
                                 <td><?php echo $quizz['question']; ?></td>
                                 <td class="text-center">
-                                    <a href="teacher.php?action=exam_edit&id=<?php echo $quizz['id']; ?>" class="text-primary">Edit</a> / 
-                                    <a href="teacher.php?action=exam_io_add&id=<?php echo $quizz['id']; ?>" class="text-primary">Add In-Out</a> /
+                                    <a href="teacher.php?action=exam_edit&id=<?php echo $quizz['id']; ?>" class="text-primary">Sửa</a> / 
+                                    <a href="teacher.php?action=exam_io_add&id=<?php echo $quizz['id']; ?>" class="text-primary">Thêm In-Out Put</a> /
                                     <a class="text-danger" href="teacher.php?action=destroy&id=<?php echo $quizz['id']; ?>" onclick="return confirm('Bạn có muốn xóa người dùng này?')"  role="button">Del</a>
                                 </td>
                             </tr>

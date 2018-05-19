@@ -321,11 +321,11 @@ class TeacherController extends Controller {
         $result = $this->exam->exam_io_store($request, $id);
 
         if ($result) {
-            $_SESSION['success'] = 'Đã them thành công';
+            $_SESSION['success'] = 'Đã thêm thành công';
             header("Location: teacher.php?action=view_exam");
             exit();
         } else {
-            $_SESSION['danger'] = 'Có lỗi khi sửa';
+            $_SESSION['danger'] = 'Có lỗi khi thêm';
             header("Location: teacher.php?action=view_exam");
             exit();
         }

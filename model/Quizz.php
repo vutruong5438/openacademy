@@ -55,7 +55,9 @@ class Quizz extends Model {
     }
 
     public function getQuizz_by_course($id) {
-        $sqlu = "SELECT quizz.id, quizz.course_id, quizz.question, quizz.answer, course.course_name, program.program_name FROM quizz LEFT JOIN course ON quizz.course_id = course.id LEFT JOIN program ON course.id = program.id WHERE quizz.course_id = '{$id}'";
+        // $sqlu = "SELECT quizz.id, quizz.course_id, quizz.question, quizz.answer, course.course_name, program.program_name FROM quizz LEFT JOIN course ON quizz.course_id = course.id LEFT JOIN program ON course.id = program.id WHERE quizz.course_id = '{$id}'";
+        $sqlu = "SELECT quizz.id, quizz.course_id, quizz.question, quizz.answer, course.course_name FROM quizz LEFT JOIN course ON quizz.course_id = course.id  WHERE quizz.course_id = '{$id}'";
+
 
         $result = $this->conn->query($sqlu);
         $listCourse = array();

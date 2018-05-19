@@ -5,7 +5,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Courses</h1>
+                    <h1>Chuyền Đề</h1>
                 </div>
             </div>
         </div>
@@ -15,18 +15,18 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header">
-              <strong>Edit Courses</strong>
+              <strong>Sửa Chuyền Đề</strong>
             </div>
             <div class="card-body card-block">
               <form method="post" enctype="multipart/form-data" class="form-horizontal" id="course_edit"
               action="teacher.php?action=course_update&id=<?php echo $infoUser['id']; ?>">
                 <div class="row form-group">
-                  <div class="col col-md-2"><label for="text-input" class=" form-control-label">Course Name</label></div>
+                  <div class="col col-md-2"><label for="text-input" class=" form-control-label">Bài Giảng</label></div>
                   <div class="col-12 col-md-4">
                   	<input type="text" name="course_name" class="form-control" value="<?php echo $infoUser['course_name']?>" >
                   </div>
                   <div class="col col-md-2">
-                  	<label for="select" class=" form-control-label">Program</label>
+                  	<label for="select" class=" form-control-label">Chuyên Đề</label>
                   </div>
                     <div class="col-12 col-md-4">
                       <select name="program" class="form-control" readonly>
@@ -44,10 +44,10 @@
                 </div>
                 <div>
               		<button type="submit" class="btn btn-primary btn-sm" name="submit">
-                		<i class="fa fa-dot-circle-o"></i> Edit
+                		<i class="fa fa-dot-circle-o"></i> Sửa
               		</button>
               		<button type="reset" class="btn btn-danger btn-sm">
-                		<i class="fa fa-ban"></i> Reset
+                		<i class="fa fa-ban"></i> Đặt lại
               		</button>
             	</div>
               </form>

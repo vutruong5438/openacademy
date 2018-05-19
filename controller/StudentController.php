@@ -63,8 +63,9 @@ class StudentController extends Controller {
         
         $check_access = $this->prog_st->check_access($id, $_SESSION['arUser']['id']);
         if ($check_access == 1){
-            $list = $this->course->view_course_by_program($id, $_SESSION['arUser']['id']);
-            foreach ($list as $course) {
+            $listcourse = $this->course->view_course_by_program($id, $_SESSION['arUser']['id']);
+            // $list = $this->course->view_course_by_program($id, $_SESSION['arUser']['id']);
+            foreach ($listcourse as $course) {
                 $check = $this->cour_st->check_exist($course['id'], $_SESSION['arUser']['id']);
                 if ($check == 0) {
                     $s = $this->cour_st->cur_st_store($course['id'], $_SESSION['arUser']['id']);
@@ -83,6 +84,7 @@ class StudentController extends Controller {
 
         $data_render = $this->course->data_render($id);
         $question = $this->quizz->getQuizz_by_course($id);
+        // var_dump($question);
         $exam = $this->exam->get_exam_by_course($id);
         require_once(dirname(__FILE__) . '/../view/student/course_render.php');
         return;
@@ -90,9 +92,9 @@ class StudentController extends Controller {
 
     public function enjoy_prog() {
         $id = $_GET['id'];
-        var_dump($id);
+        
         $prog = $this->prog->getProgram($id);
-        var_dump($prog);
+        
         $check = $this->prog_st->check_exist($id, $_SESSION['arUser']['id']);
         if ($check == 0) {
                 $prog_st_enjoy = $this->prog_st->store_prog_st($id, $_SESSION['arUser']['id']);
@@ -101,16 +103,16 @@ class StudentController extends Controller {
                 $body = "{$_SESSION['arUser']['fullname']} waiting accept to  {$prog['program_name']}";
                 // Create notification
                 $noti = $this->prog_st->update_prog_mesg($prog_megs['id'],$subject,$body, $prog['user_id']);
-                $_SESSION['enjoy_prog'] = "Enjoy to Program {$prog['program_name']} <br/> Wait for {$prog['fullname']} accept.";
+                $_SESSION['enjoy_prog'] = "Đã gởi yêu cầu tham gia khóa học {$prog['program_name']} <br/> Vui lòng chờ {$prog['fullname']} chấp nhận yêu cầu này của bạn.";
                 header("Location: student.php?action=viewprogram");
             }
         else {
             $prog_st = $this->prog_st->get_prog_st_data($id, $_SESSION['arUser']['id']);
             if ($prog_st['approve'] == 1) {
-                $_SESSION['enjoy_prog'] = " You have participated in this program.";
+                $_SESSION['enjoy_prog'] = "Bạn đã tham gia vào khóa học này.";
                 header("Location: student.php?action=viewprogram");
             }else {
-                 $_SESSION['enjoy_prog'] = "Enjoy to Program {$prog['program_name']} <br/> Wait for {$prog['fullname']} accept.";;
+                 $_SESSION['enjoy_prog'] = "Đã gởi yêu cầu tham gia khóa học {$prog['program_name']} <br/> Vui lòng chờ {$prog['fullname']} châ[s nhận yêu cầu này của bạn.";
                 header("Location: student.php?action=viewprogram");
             }
         }
@@ -126,10 +128,13 @@ class StudentController extends Controller {
         $temp = 0;
         foreach ($questions as $question) {
             $id = "quizz{$question['id']}";
-            $quiz = $_POST[$id];
-            if ($quiz == $question['answer']){
-                $temp += 1;
+            if ($_POST[$id]){
+                $quiz = $_POST[$id];
+                if ($quiz == $question['answer']){
+                    $temp += 1;
+                }           
             }
+            
         }
         $code = 0;
         $id_exam = $_GET['exam'];
@@ -155,7 +160,9 @@ class StudentController extends Controller {
         $result = $code + floor(70*($temp/$len_quiz));
 
         $res = $this->cour_st->update_cur_st($id_course, $_SESSION['arUser']['id'], $result);
-        require_once(dirname(__FILE__) . '/../view/student/view_course.php');
+        $prog_id = $this->course->get_program_id($id_course);
+        header("Location: student.php?action=viewcours&id={$prog_id}");
+        // require_once(dirname(__FILE__) . '/../view/student/view_course.php');
         return;
 
     }

@@ -36,10 +36,10 @@
                     <thead>
                       <tr>
                         <th>STT</th>
-                        <th>Courses Name</th>
-                        <th>Teacher</th>
-                        <th>Program</th>
-                        <th>Information</th>
+                        <th>Bài Giảng</th>
+                        <th>Giảng Viên</th>
+                        <th>Chuyền đề</th>
+                        <th>Thông tin</th>
                         <th>Thao Tác</th>
                       </tr>
                     </thead>

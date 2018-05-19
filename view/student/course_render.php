@@ -101,7 +101,7 @@ int main()
 											$(document).ready(function(){
 											    //listen for form submission
 											    $("#st").on('click', function(e){
-
+											    	console.log('abc');
 											    	$("#div").html("Loading ......");
 												    //prevent form from submitting and leaving page
 												    e.preventDefault();
