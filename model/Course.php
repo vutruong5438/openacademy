@@ -54,7 +54,7 @@ class Course extends Model {
     }
     
     public function getCourse($id) {
-        $sql = "SELECT course.id, course.course_name, course.body, pr'{$id}'ogram.program_name, course.program_id FROM course LEFT JOIN program ON course.program_id = program.id WHERE course.id = '{$id}'";
+        $sql = "SELECT course.id, course.course_name, course.body, program.program_name, course.program_id FROM course LEFT JOIN program ON course.program_id = program.id WHERE course.id = '{$id}'";
 
         $result = $this->conn->query($sql);
         $info = mysqli_fetch_assoc($result);

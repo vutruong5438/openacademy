@@ -40,8 +40,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="../images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="../images/logo2.png" alt="Logo"></a>
+                <!-- <a class="navbar-brand" href="./"><img src="../images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="../images/logo2.png" alt="Logo"></a> -->
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -90,7 +90,7 @@
                             </form>
                         </div>
 
-                        <div class="dropdown for-notification">
+                        <!-- <div class="dropdown for-notification">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                             <span class="count bg-danger">5</span>
@@ -102,7 +102,7 @@
                                 <p>Server #1 overloaded.</p>
                             </a>
                           </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
