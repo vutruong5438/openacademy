@@ -146,7 +146,7 @@ class StudentController extends Controller {
         foreach ($in_out as $value) {
             $output = $this->check_code($value["input"], $code);
             
-           
+           var_dump($output);
 
             if ($output == $value["output"]){
                 $check += 1;
@@ -175,15 +175,17 @@ class StudentController extends Controller {
 
 
         $in_out = $this->exam->get_in_ouy_by_exam($id_exam);
+
         $result = count($in_out);
         $check = 0;
 
         foreach ($in_out as $value) {
             $output = $this->check_code($value["input"], $code);
-            
-           
 
-            if ($output == $value["output"]){
+            // var_dump(trim($output));
+            // var_dump($value["output"]);
+            // var_dump(strcasecmp(rtrim($output), $value["output"]) == 0);
+            if (strcasecmp(rtrim($output), $value["output"]) == 0){
                 $check += 1;
             }
            
@@ -213,7 +215,7 @@ class StudentController extends Controller {
         $executable="a.exe";
         $command=$CC." -lm ".$filename_code;    
         $command_error=$command." 2>".$filename_error;
-        $output = null;
+        $output = "";
 
         //if(trim($code)=="")
         //die("The code area is empty");
@@ -238,7 +240,7 @@ class StudentController extends Controller {
             }
             else
             {
-                $out=$out." < ".$filename_in;
+                $out=$out."<".$filename_in;
                 $output=shell_exec($out);
             }
             //echo "<pre>$output</pre>";
@@ -254,7 +256,7 @@ class StudentController extends Controller {
             }
             else
             {
-                $out=$out." < ".$filename_in;
+                $out=$out."<".$filename_in;
                 $output=shell_exec($out);
             }
             // echo "$output";
@@ -269,6 +271,7 @@ class StudentController extends Controller {
         exec("del *.o");
         exec("del *.txt");
         exec("del $executable");
+        // return (int)$output;
         return $output;
     }
 

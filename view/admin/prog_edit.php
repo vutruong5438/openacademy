@@ -20,7 +20,7 @@
                 <div class="card-body card-block">
                   <form method="post" action="admin.php?action=prog_store">
                         <div class="form-group">
-                            <label>Program Name</label>
+                            <label>Chuyền Đề</label>
                             <input type="text" name="program_name" class="form-control" placeholder="Khóa học" value="<?php echo $infoUser['program_name']; ?>">
                         </div>
                         <div class="form-group">

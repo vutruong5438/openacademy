@@ -35,7 +35,7 @@
                     <thead>
                       <tr>
                         <th>Tên Đăng Nhập</th>
-                        <th>Full Name</th>
+                        <th>Họ và Tên</th>
                         <th>Email</th>
                         <th>Thao Tác</th>
                       </tr>

@@ -59,8 +59,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true"> <i class="menu-icon fa fa-table"></i>Thành Viên</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="admin.php?action=teachers">Teacher</a></li>
-                            <li><i class="fa fa-table"></i><a href="admin.php?action=students">Student</a></li>
+                            <li><i class="fa fa-table"></i><a href="admin.php?action=teachers">Giảng Viên</a></li>
+                            <li><i class="fa fa-table"></i><a href="admin.php?action=students">Sinh Viên</a></li>
                             
                     </li>
                 </ul>

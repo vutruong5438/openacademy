@@ -37,7 +37,7 @@
                       <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email</label></div>
                       <div class="col-12 col-md-9">
                         <input type="email" name="email" placeholder="Enter Email" class="form-control" value="<?php echo $infoUser['email']?>">
-                        ></div>
+                        </div>
                     </div>
                     <div class="row form-group">
                       <div class="col col-md-3"><label for="password-input" class=" form-control-label">Mật Khẩu</label></div>
