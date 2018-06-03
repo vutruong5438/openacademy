@@ -1,16 +1,16 @@
 <?php
 
-    putenv("PATH=C:\Program Files (x86)\CodeBlocks\MinGW\bin");
-	$CC="g++";
-	$out="a.exe";
+    $CC="g++";
+	$out="timeout 5s ./a.out";
 	$code=$_POST["code"];
 	$input=$_POST["input"];
 	$filename_code="main.cpp";
 	$filename_in="input.txt";
 	$filename_error="error.txt";
-	$executable="a.exe";
+	$executable="a.out";
 	$command=$CC." -lm ".$filename_code;	
 	$command_error=$command." 2>".$filename_error;
+	$check=0;
 
 	//if(trim($code)=="")
 	//die("The code area is empty");
@@ -21,11 +21,14 @@
 	$file_in=fopen($filename_in,"w+");
 	fwrite($file_in,$input);
 	fclose($file_in);
-	exec("cacls  $executable /g everyone:f"); 
-	exec("cacls  $filename_error /g everyone:f");	
+	exec("chmod -R 777 $filename_in");
+	exec("chmod -R 777 $filename_code");  
+	exec("chmod 777 $filename_error");	
 
 	shell_exec($command_error);
+	exec("chmod -R 777 $executable");
 	$error=file_get_contents($filename_error);
+	$executionStartTime = microtime(true);
 
 	if(trim($error)=="")
 	{
@@ -61,8 +64,8 @@
 	{
 		echo "<pre>$error</pre>";
 	}
-	exec("del $filename_code");
-	exec("del *.o");
-	exec("del *.txt");
-	exec("del $executable");
+	exec("rm $filename_code");
+	exec("rm *.o");
+	exec("rm *.txt");
+	exec("rm $executable");
 ?>
